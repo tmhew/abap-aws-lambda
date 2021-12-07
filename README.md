@@ -1,4 +1,4 @@
-# abap-aws-lambda
+# AWS Lambda for ABAP
 AWS Lambda API for ABAP
 
 ## Setting up
