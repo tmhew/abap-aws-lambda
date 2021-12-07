@@ -47,7 +47,7 @@ class zaws_lmb_invoke definition
                         returning value(_me) type ref to zaws_lmb_invoke.
 
     methods execute exporting status_code type string
-                              result      type string.
+                              payload     type string.
 
   protected section.
   private section.
@@ -64,7 +64,7 @@ class zaws_lmb_invoke definition
     data secret_key type string.
     data region type string.
     data function_name type string.
-    data payload type string value ``.
+    data request_payload type string value ``.
 endclass.
 
 
@@ -115,7 +115,7 @@ class zaws_lmb_invoke implementation.
   endmethod.
 
   method set_payload.
-    me->payload = payload.
+    me->request_payload = payload.
     _me = me.
   endmethod.
 
@@ -159,7 +159,7 @@ class zaws_lmb_invoke implementation.
         data(host) = |lambda.{ me->region }.amazonaws.com|.
         data(endpoint) = |https://{ host }/2015-03-31/functions/{ function_name }/invocations|.
 
-        data(payload_hash) = zaws_sigv4_utilities=>get_hash( message = payload ).
+        data(payload_hash) = zaws_sigv4_utilities=>get_hash( message = request_payload ).
 
         zaws_sigv4_utilities=>get_current_timestamp( importing amz_date  = data(amzdate)
                                                                datestamp = data(date_stamp) ).
@@ -235,7 +235,7 @@ class zaws_lmb_invoke implementation.
         data(response) = rest_client->if_rest_client~get_response_entity( ).
 
         status_code = response->get_header_field( '~status_code' ).
-        result = response->get_string_data( ).
+        payload = response->get_string_data( ).
 
       catch cx_root into data(x_root).
         "Do something!!!
@@ -251,9 +251,9 @@ class zaws_lmb_invoke implementation.
     lo_lambda->set_function_name( `tmTestFunc001` ).
 
     lo_lambda->execute( importing status_code = data(status_code)
-                                  result = data(result) ).
+                                  payload = data(payload) ).
     out->write( status_code ).
-    out->write( result ).
+    out->write( payload ).
 
   endmethod.
 
