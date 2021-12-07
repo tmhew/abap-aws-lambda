@@ -1,5 +1,5 @@
 # AWS Lambda for ABAP
-AWS Lambda API for ABAP
+ABAP wrapper around AWS Lambda REST API.
 
 ## Setting up
 
@@ -19,3 +19,15 @@ openssl s_client -connect lambda.us-east-1.amazonaws.com:443 -showcerts
 # Copy this content to a text file and upload the text file to STRUST
 # -----END CERTIFICATE-----
 ```
+## Supported Lambda Actions
+
+These are highly opinionated wrappers around the respective Lambda actions and by no mean meant to be comprehensive. If you have use cases that are not covered by these wrappers, consider writing your own wrappers with the help of [AWS Signature V4 for ABAP](https://github.com/tmhew/abap-aws-sigv4).
+
+| Actions | ABAP Objects |
+|---------|--------------|
+| [Invoke](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html) | [ZAWS_LMB_INVOKE](https://github.com/tmhew/abap-aws-lambda/blob/main/src/zaws_lmb_invoke.clas.abap) |
+
+## References
+
++ [AWS Lambda API Reference](https://docs.aws.amazon.com/lambda/latest/dg/API_Reference.html)
++ [AWS Lambda endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/lambda-service.html)
