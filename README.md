@@ -10,6 +10,8 @@ Import the following library to your ABAP platform:
 Import relevant AWS Lambda REST API SSL certification to `STRUST` under `SSL client SSL Client (Standard)`. Below is an example how you can go about doing it.
 
 ```sh
+# You might be using a different AWS region.
+
 openssl s_client -connect lambda.us-east-1.amazonaws.com:443 -showcerts
 
 # Copy the content of the certificate with the following subject and import it to STRUST. 
