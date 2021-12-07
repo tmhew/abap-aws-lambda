@@ -233,7 +233,8 @@ class zaws_lmb_invoke implementation.
 
         rest_client->if_rest_client~post( request ).
         data(response) = rest_client->if_rest_client~get_response_entity( ).
-        data(result_headers) = response->get_header_fields( ).
+
+        status_code = response->get_header_field( '~status_code' ).
         result = response->get_string_data( ).
 
       catch cx_root into data(x_root).
@@ -249,7 +250,9 @@ class zaws_lmb_invoke implementation.
 
     lo_lambda->set_function_name( `tmTestFunc001` ).
 
-    lo_lambda->execute( importing result = data(result) ).
+    lo_lambda->execute( importing status_code = data(status_code)
+                                  result = data(result) ).
+    out->write( status_code ).
     out->write( result ).
 
   endmethod.
