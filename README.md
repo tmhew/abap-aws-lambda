@@ -7,7 +7,7 @@ Import the following library to your ABAP platform:
 
 + [AWS Signature V4 for ABAP](https://github.com/tmhew/abap-aws-sigv4)
 
-Import relevant lambda API SSL certification to `STRUST` under `SSL client SSL Client (Standard)`. Below is an example how you can go about doing it.
+Import relevant AWS Lambda REST API SSL certification to `STRUST` under `SSL client SSL Client (Standard)`. Below is an example how you can go about doing it.
 
 ```sh
 openssl s_client -connect lambda.us-east-1.amazonaws.com:443 -showcerts
