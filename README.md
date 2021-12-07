@@ -3,7 +3,7 @@ AWS Lambda API for ABAP
 
 ## Setting up
 
-Import the following library in your ABAP platform to use AWS Lambda for ABAP:
+Import the following library to your ABAP platform:
 
 + [AWS Signature V4 for ABAP](https://github.com/tmhew/abap-aws-sigv4)
 
